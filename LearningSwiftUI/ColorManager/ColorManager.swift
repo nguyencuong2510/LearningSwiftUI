@@ -9,24 +9,31 @@ import SwiftUI
 
 struct ColorManager: View {
     var body: some View {
-        ZStack {
-//            LinearGradient(stops: [
-//                .init(color: .black, location: 0.2),
-//                .init(color: .red, location: 0.5)
-//            ], startPoint: .top, endPoint: .bottom)
-//                .ignoresSafeArea()
-
-            AngularGradient(colors: [
-                .red,
-                .blue,
-            ], center: .center)
-            .mask {
-                Text("Nguuyen van cuong")
-                    .bold()
-                    .font(.largeTitle)
-            }
-
+        VStack {
+            Capsule(style: .circular)
+                .fill(.blue)
+                .frame(width: 100, height: 50)
             
+            Capsule(style: .continuous)
+                .frame(width: 100, height: 50)
+            
+            Capsule()
+                .frame(width: 50, height: 50)
+            
+            Ellipse()
+                .frame(width: 50, height: 50)
+            
+            Rectangle()
+                .frame(width: 50, height: 50)
+                .cornerRadius(12)
+            
+            RoundedRectangle(cornerRadius: 12)
+                .frame(width: 50, height: 50)
+            
+            Image("Image")
+                .resizable()
+                .frame(width: 100, height: 100)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
         }
     }
 }
