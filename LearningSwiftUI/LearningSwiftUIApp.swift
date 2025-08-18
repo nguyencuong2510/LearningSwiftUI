@@ -10,12 +10,25 @@ import CoreData
 
 @main
 struct LearningSwiftUIApp: App {
-    let persistenceController = PersistenceController.shared
+    @StateObject private var viewModel = PurchaseViewModel()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            TabView {
+                PurchaseView()
+                    .environmentObject(viewModel)
+                    .tabItem {
+                        Image(systemName: "creditcard")
+                        Text("Purchase")
+                    }
+                
+                PurchaseStateView()
+                    .environmentObject(viewModel)
+                    .tabItem {
+                        Image(systemName: "gear")
+                        Text("State")
+                    }
+            }
         }
     }
 }
