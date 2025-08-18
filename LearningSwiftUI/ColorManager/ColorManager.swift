@@ -9,7 +9,25 @@ import SwiftUI
 
 struct ColorManager: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+//            LinearGradient(stops: [
+//                .init(color: .black, location: 0.2),
+//                .init(color: .red, location: 0.5)
+//            ], startPoint: .top, endPoint: .bottom)
+//                .ignoresSafeArea()
+
+            AngularGradient(colors: [
+                .red,
+                .blue,
+            ], center: .center)
+            .mask {
+                Text("Nguuyen van cuong")
+                    .bold()
+                    .font(.largeTitle)
+            }
+
+            
+        }
     }
 }
 

@@ -8,29 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
-    
     @State private var isOpen = false
     @State private var isState = false
+
+    fileprivate func extractedFunc() -> Button<Text> {
+        return Button {
+            withAnimation {
+                isOpen.toggle()
+            }
+        } label: {
+            Text("Toggle Arrow 11")
+        }
+    }
     
     var body: some View {
         let _ = Self._printChanges()
         VStack {
             Image(systemName: "arrow.down")
                 .rotationEffect(.init(degrees: isOpen ? 0 : 180))
-            
-            Button {
-                withAnimation {
-                    isOpen.toggle()
-                }
-            } label: {
-                Text("Toggle Arrow")
-            }
-            
-            Spacer(minLength: 20)
-            
-            Image(systemName: "arrow.down")
-                .rotationEffect(.init(degrees: isState ? 0 : 180))
-        
+            ViewDependencyArrow(isOpen: $isOpen)
+            extractedFunc()
+
+            ViewDependencyArrow(isOpen: $isState)
+
             Button {
                 withAnimation {
                     isState.toggle()
@@ -42,6 +42,20 @@ struct ContentView: View {
     }
 }
 
+struct ViewDependencyArrow: View {
+    @Binding var isOpen: Bool
+
+    var body: some View {
+        let _ = Self._printChanges()
+        return Image(systemName: "arrow.down")
+            .rotationEffect(.init(degrees: isOpen ? 0 : 180))
+    }
+}
+
 #Preview {
-    ContentView()
+    NavigationView {
+        ContentView()
+            .navigationTitle("Title Header")
+    }
+//    .preferredColorScheme(.dark)
 }
